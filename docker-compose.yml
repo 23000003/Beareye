@@ -1,0 +1,51 @@
+name: BearEye
+
+services:
+  bearEye.api:
+    image: ${DOCKER_REGISTRY-}bearEyeApi
+    container_name: bearEye.api
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    networks:
+      - BearEye
+    ports:
+      - "5000:5000"
+      - "5001:5001"
+    depends_on:
+      - bearEye.database
+
+  bearEye.database:
+    image: postgres:latest
+    container_name: bearEye.database
+    environment:
+      - POSTGRES_DB=bearEye
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - ./.containers/products-db:/var/lib/postgresql/database
+    ports:
+      - 5432:5432
+    
+  bearEye.frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    env_file: ./frontend/.env
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    networks:
+      - BearEye
+    ports:
+      - 5173:5173
+    command: npm run dev -- --host
+    depends_on:
+      - bearEye.api
+
+volumes:
+  mongo_data:
+networks:
+  BearEye:
+    driver: bridge
