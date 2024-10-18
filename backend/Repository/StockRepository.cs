@@ -69,5 +69,10 @@ namespace backend.Repository
 
             return stockModel;
         }
+
+        public Task<bool> StockExists(int id)
+        {
+            return context.Stock.AnyAsync(s => s.Id == id);
+        }
     }
 }
