@@ -20,12 +20,12 @@ namespace backend.Repository
 
         public async Task<List<Stock>> GetAllAsync()
         {
-            return await context.Stock.ToListAsync();
+            return await context.Stock.Include(c => c.Comments).ToListAsync();
         }
 
         public async Task<Stock?> GetByIdAsync(int id)
         {
-            return await context.Stock.FindAsync(id);
+            return await context.Stock.Include(c => c.Comments).FirstOrDefaultAsync(i => i.Id == id);
         }
 
         public async Task<Stock> CreateAsync(Stock stockModel)
@@ -56,7 +56,7 @@ namespace backend.Repository
             if(stockModel == null){
                 return null;
             }
-            
+
             // stockModel.Symbol = updateDto.Symbol;
             // stockModel.CompanyName = updateDto.CompanyName;
             // stockModel.Purchase = updateDto.Purchase;

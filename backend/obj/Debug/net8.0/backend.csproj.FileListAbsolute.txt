@@ -287,3 +287,7 @@ C:\Users\Kenny\Desktop\BearEye\backend\obj\Debug\net8.0\backend.pdb
 C:\Users\Kenny\Desktop\BearEye\backend\obj\Debug\net8.0\backend.genruntimeconfig.cache
 C:\Users\Kenny\Desktop\BearEye\backend\obj\Debug\net8.0\ref\backend.dll
 C:\Users\Kenny\Desktop\BearEye\backend\obj\Debug\net8.0\backend.sourcelink.json
+C:\Users\Kenny\Desktop\BearEye\backend\bin\Debug\net8.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\Kenny\Desktop\BearEye\backend\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\Kenny\Desktop\BearEye\backend\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\Kenny\Desktop\BearEye\backend\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll
