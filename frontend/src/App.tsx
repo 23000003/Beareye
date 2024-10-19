@@ -1,13 +1,16 @@
+import React from 'react'
+import Navbar from './Components/Navbar'
+import { Outlet } from 'react-router-dom'
 
-
-function App() {
-  return (
-    <>
-      <div className='bg-red-400'>
-        HEYY
-      </div>
-    </>
-  )
+export default function App() {
+    return (
+        <>
+            <header>
+                <Navbar/>
+            </header>
+            <main>
+                <Outlet/>  
+            </main>
+        </>
+    )
 }
-
-export default App
