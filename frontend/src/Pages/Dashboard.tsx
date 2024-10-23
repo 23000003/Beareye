@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import CryptoChainsNav from '../Components/CryptoChainsNav';
+import CryptoCardsData from '../Components/CryptoCardsData';
 
 
 export default function Dashboard(){
@@ -34,9 +36,15 @@ export default function Dashboard(){
                     </div>
                 </div>
             </div>
-            <div>
-                testHEY
-            </div>  
+
+            <div className='px-2 py-4 text-sm font-bold'>
+                <CryptoChainsNav/>
+            </div>
+
+            <div className='flex flex-col'>
+                <CryptoCardsData/>
+            </div>
+
         </div>
     )
 

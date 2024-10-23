@@ -1,5 +1,6 @@
 import React from 'react'
 import AppLogo from './SubComponents/AppLogo'
+import { Link } from 'react-router-dom'
 
 export default function Navbar() {
     return (
@@ -50,9 +51,9 @@ export default function Navbar() {
                         <div className='flex items-center border px-4 py-1 border-orange-400 text-orange-400 cursor-pointer hover:bg-gray-900 duration-300'>
                             <span>Web3 log in</span>
                         </div>
-                        <div className='cursor-pointer flex items-center'>
+                        <Link to="profile" className='cursor-pointer flex items-center'>
                             <i className="fa-regular fa-user text-black bg-orange-400 py-2 px-2.5 rounded-3xl"></i>
-                        </div>
+                        </Link>
                     </div>
                </div>
             </div>
