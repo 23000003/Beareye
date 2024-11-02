@@ -100,5 +100,10 @@ namespace backend.Repository
         {
             return context.Stock.AnyAsync(s => s.Id == id);
         }
+
+        public async Task<Stock?> GetBySymbolAsync(string symbol)
+        {
+            return await context.Stock.FirstOrDefaultAsync(s => s.Symbol == symbol);
+        }
     }
 }
