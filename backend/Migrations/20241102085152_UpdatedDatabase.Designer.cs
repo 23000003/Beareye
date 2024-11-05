@@ -12,8 +12,8 @@ using backend.Data;
 namespace backend.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20241024123739_PortfolioManytoMany")]
-    partial class PortfolioManytoMany
+    [Migration("20241102085152_UpdatedDatabase")]
+    partial class UpdatedDatabase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -53,13 +53,13 @@ namespace backend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "7a3bedfc-68be-4226-bc81-c0b87f5985f6",
+                            Id = "08beceee-3c29-4851-8309-57d95919aa20",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "41e25afd-d946-4c90-a088-5b936464cf70",
+                            Id = "a3936be5-ca62-49ab-ab29-aa7c844b3b6c",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -243,6 +243,10 @@ namespace backend.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("AppUserId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("Content")
                         .IsRequired()
                         .HasColumnType("text");
@@ -258,6 +262,8 @@ namespace backend.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
 
                     b.HasIndex("StockId");
 
@@ -366,9 +372,17 @@ namespace backend.Migrations
 
             modelBuilder.Entity("backend.Models.Comment", b =>
                 {
+                    b.HasOne("backend.Models.AppUser", "AppUser")
+                        .WithMany()
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("backend.Models.Stock", "Stock")
                         .WithMany("Comments")
                         .HasForeignKey("StockId");
+
+                    b.Navigation("AppUser");
 
                     b.Navigation("Stock");
                 });

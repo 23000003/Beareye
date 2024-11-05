@@ -14,7 +14,10 @@ namespace backend.Models
         public string Content { get; set; } = string.Empty;
         public DateTime CreatedOn {get; set;} = DateTime.UtcNow;
         public int? StockId { get; set; }
-        //Navigation Property
-        public Stock? Stock { get; set; }
+        public Stock? Stock { get; set; } //Navigation Property
+
+        // One To One
+        public string AppUserId { get; set; }
+        public AppUser AppUser { get; set; }
     }
 }

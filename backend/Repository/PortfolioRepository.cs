@@ -24,6 +24,23 @@ namespace backend.Repository
             return portfolio;
         }
 
+        public async Task<Portfolio> DeletePortfolio(AppUser appUser, string symbol)
+        {
+            var portfolioModel = await context.Portfolios.FirstOrDefaultAsync(
+                    x => x.AppUserId == appUser.Id && x.Stock.Symbol.ToLower() == symbol.ToLower()
+            );
+
+            if(portfolioModel == null){
+                return null;
+            }
+
+            context.Portfolios.Remove(portfolioModel);
+
+            await context.SaveChangesAsync();
+
+            return portfolioModel;
+        }
+
         public async Task<List<Stock>> GetUserPortfolio(AppUser user)
         {
             return await context.Portfolios.Where(u => u.AppUserId == user.Id)
